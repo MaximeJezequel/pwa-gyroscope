@@ -15,9 +15,14 @@ function App() {
   const [supportedFlippingDirection, setSupportedFlippingDirection] =
     useState<string>("yes")
 
+  const [gamma, setGamma] = useState<number | null>(null)
+  const [beta, setBeta] = useState<number | null>(null)
+
   useEffect(() => {
     if (window.DeviceOrientationEvent) {
       window.addEventListener("deviceorientation", handleOrientation)
+      return () =>
+        window.removeEventListener("deviceorientation", handleOrientation)
     } else {
       console.log("Device orientation not supported")
       setSupportedFlippingDirection("no")
@@ -25,17 +30,18 @@ function App() {
   }, [])
 
   function handleOrientation(event: DeviceOrientationEvent) {
-    const { alpha, beta, gamma } = event
+    setGamma(event.gamma)
+    setBeta(event.beta)
 
     // Determine flipping direction
 
-    if (gamma! < -45) {
+    if (event.gamma! < -45) {
       setFlippingDirection(flippingMessages.left)
-    } else if (gamma! > 45) {
+    } else if (event.gamma! > 45) {
       setFlippingDirection(flippingMessages.right)
-    } else if (beta! < -45) {
+    } else if (event.beta! < -45) {
       setFlippingDirection(flippingMessages.top)
-    } else if (beta! > 45) {
+    } else if (event.beta! > 45) {
       setFlippingDirection(flippingMessages.bottom)
     }
   }
@@ -49,7 +55,11 @@ function App() {
         <h1>Flip your phone to see a message</h1>
       )}
       {supportedFlippingDirection === "yes" && flippingDirection !== null && (
-        <h2>{flippingDirection}</h2>
+        <>
+          <h2>{flippingDirection}</h2>
+          <h2>Gamma : {gamma!.toFixed(2)}</h2>
+          <h2>Beta : {beta!.toFixed(2)}</h2>
+        </>
       )}
     </div>
   )
