@@ -17,9 +17,9 @@ export default defineConfig({
         display: "standalone",
         scope: "/",
         start_url: "/",
-        short_name: "React PWA",
-        description: "Vite React PWA",
-        name: "Vite React PWA",
+        short_name: "MyGyroscope",
+        description: "MyGyroscope",
+        name: "MyGyroscope",
         icons: [
           {
             src: "/icon-192x192.png",
