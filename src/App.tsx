@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 
 function App() {
   const flippingMessages: { [key: string]: string } = {
-    top: "Flipped to the top",
-    bottom: "Flipped to the bottom",
-    left: "Flipped to the left",
-    right: "Flipped to the right",
+    top: "Flipped to the top - Circle",
+    bottom: "Flipped to the bottom - Triangle / Waves",
+    left: "Flipped to the left - Square",
+    right: "Flipped to the right - Cross / Heart",
   }
 
   const [flippingDirection, setFlippingDirection] = useState<string | null>(
