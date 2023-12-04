@@ -15,6 +15,7 @@ export default defineConfig({
         theme_color: "#000000",
         background_color: "#000000",
         display: "standalone",
+        orientation: "portrait-primary",
         scope: "/",
         start_url: "/",
         short_name: "MyGyroscope",
